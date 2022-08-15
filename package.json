@@ -1,0 +1,44 @@
+{
+  "name": "portofolio-utils",
+  "version": "1.0.0",
+  "description": "Utilities useful in portofolio related applications.",
+  "exports": "./build/src/index.js",
+  "engines": {
+    "node": ">=14.16"
+  },
+  "scripts": {
+    "test": "ts-mocha -p tsconfig.json test/**/*.spec.ts",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/suciubogdan/portofolio-utils.git"
+  },
+  "keywords": [
+    "portofolio",
+    "utils"
+  ],
+  "author": "Bogdan Suciu <contact@bogdansuciu.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suciubogdan/portofolio-utils/issues"
+  },
+  "homepage": "https://github.com/suciubogdan/portofolio-utils#readme",
+  "devDependencies": {
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^14.11.2",
+    "chai": "^4.3.6",
+    "gts": "^3.1.0",
+    "mocha": "^10.0.0",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  }
+}
