@@ -6,6 +6,16 @@ export class Wallet {
 
   constructor(public readonly symbol: string) {}
 
+  createTransaction(date: Date, amount: number, description?: string) {
+    const transaction = {
+      symbol: this.symbol,
+      date: date,
+      amount: amount,
+      description: description
+    }
+    this.addTransaction(transaction);
+    return transaction;
+  }
   addTransaction(transaction: Transaction) {
     if (transaction.symbol !== this.symbol) {
       throw new Error(
