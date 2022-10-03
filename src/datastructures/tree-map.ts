@@ -280,7 +280,7 @@ export default class TreeMap<K, V> {
         this.size = 0;
         this.root = null;
     }
-    getLowerEntry(key: K) {
+    getEqualOrLowerEntry(key: K) {
         let p = this.root;
         while (p != null) {
             if (key > p.key) {
@@ -288,7 +288,7 @@ export default class TreeMap<K, V> {
                     p = p.right;
                 else
                     return p;
-            } else {
+            } else if(key < p.key) {
                 if (p.left != null) {
                     p = p.left;
                 } else {
@@ -300,12 +300,14 @@ export default class TreeMap<K, V> {
                     }
                     return parent;
                 }
+            } else {
+                return p;
             }
         }
         return null;
     }
 
-    getHigherEntry(key: K) {
+    getEqualOrHigherEntry(key: K) {
         let p = this.root;
         while (p != null) {
             if (key < p.key) {
@@ -313,7 +315,7 @@ export default class TreeMap<K, V> {
                     p = p.left;
                 else
                     return p;
-            } else {
+            } else if(key > p.key) {
                 if (p.right != null) {
                     p = p.right;
                 } else {
@@ -325,6 +327,8 @@ export default class TreeMap<K, V> {
                     }
                     return parent;
                 }
+            } else {
+                return p;
             }
         }
         return null;
