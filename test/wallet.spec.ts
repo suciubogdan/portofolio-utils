@@ -34,5 +34,17 @@ describe('wallet', () => {
     expect(transactions[2]).to.equal(transaction3);
 
     expect(transactions.length).to.equal(3);
-  })
+  });
+
+  it('should compute the balance', () => {
+    const wallet = new Wallet(symbol);
+    const today = new Date();
+    const yesterday = new Date(today.valueOf() - 1 * 24*60*60*1000);
+    const lastWeek = new Date(today.valueOf() - 7 * 24*60*60*1000);
+    wallet.createTransaction(today, 3, "third");
+    wallet.createTransaction(lastWeek, 1, "first");
+    wallet.createTransaction(yesterday, 2, "second");
+    expect(wallet.balance()).to.equal(6);
+    expect(wallet.balanceOn(yesterday)).to.equal(3);
+  });
 });

@@ -51,4 +51,30 @@ export class Wallet {
       current = current.next;
     }
   }
+
+  balance(): number {
+    if(!this.transactionsHead) {
+      return 0;
+    }
+    let balance = 0;
+    let current : LinkedListNode<Transaction> | undefined = this.transactionsHead;
+    while(current) {
+      balance = balance + current.element.amount;
+      current = current.next;
+    }
+    return balance;
+  }
+
+  balanceOn(date?: Date) : number {
+    if(!this.transactionsHead) {
+      return 0;
+    }
+    let balance = 0;
+    let current : LinkedListNode<Transaction> | undefined = this.transactionsHead;
+    while(current && (!date || current.element.date <= date)) {
+      balance = balance + current.element.amount;
+      current = current.next;
+    }
+    return balance;
+  }
 }
